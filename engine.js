@@ -762,10 +762,10 @@ module.exports = Wave = async(Wave, m, msg, chatUpdate, store) => {
  case 'autoblock': {
 if (!isCreator) return replay(mess.botowner)
 if (args[0] === "on") {
-if (AutoBlock) return Wave.sendMessage(m.chat, { text: 'Already activated'}, { quoted: m )
+if (AutoBlock) return Wave.sendMessage(m.chat, { text: 'Already activated'}, { quoted: m })
 ntilinkall.push(from)
 fs.writeFileSync('./src/database/autoblock.json', JSON.stringify(ntilinkall))
-Wave.sendMessage(m.chat, { text: 'Success in turning on all autoblock in this group'}, { quoted: m );
+Wave.sendMessage(m.chat, { text: 'Success in turning on all autoblock in this group'}, { quoted: m });
 var groupe = await Wave.groupMetadata(from)
 var members = groupe['participants']
 var mems = []
@@ -774,11 +774,11 @@ mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
 })
 Wave.sendMessage(from, {text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nDont DM or PM or Inbox To The Bot Else You'll Be Blocked l`, contextInfo: { mentionedJid : mems }}, {quoted:m})
 } else if (args[0] === "off") {
-if (!AutoBlock) return  Wave.sendMessage(m.chat, { text: 'Already deactivated'}, { quoted: m )
+if (!AutoBlock) return  Wave.sendMessage(m.chat, { text: 'Already deactivated'}, { quoted: m })
 let off = ntilinkall.indexOf(from)
 ntilinkall.splice(off, 1)
 fs.writeFileSync('./src/database/autoblock.json', JSON.stringify(ntilinkall))
-Wave.sendMessage(m.chat, { text: 'Success in turning off all autoblock in this group'}, { quoted: m )
+Wave.sendMessage(m.chat, { text: 'Success in turning off all autoblock in this group'}, { quoted: m })
 } else {
   await Wave.sendMessage(m.chat, { text: `Please Type The Option\n\nExample: ${prefix + command} on\nExample: ${prefix + command} off\n\non to enable\noff to disable`}, { quoted: m })
   }

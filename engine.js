@@ -89,22 +89,21 @@ module.exports = Wave = async(Wave, m, msg, chatUpdate, store) => {
                 fromMe
             } = m
             var body = (
-                m.mtype === 'conversation' ? m.message.conversation :
-                m.mtype === 'imageMessage' ? m.message.imageMessage.caption :
-                m.mtype === 'videoMessage' ? m.message.videoMessage.caption :
-                m.mtype === 'extendedTextMessage' ? m.message.extendedTextMessage.text :
-                m.mtype === 'buttonsResponseMessage' ? m.message.buttonsResponseMessage.selectedButtonId :
-                m.mtype === 'listResponseMessage' ? m.message.listResponseMessage.singleSelectReply.selectedRowId :
-                m.mtype === 'InteractiveResponseMessage' ? JSON.parse(m.message.interactiveResponseMessage.nativeFlowResponseMessage.paramsJson) ? m.id :
-                m.mtype === 'templateButtonReplyMessage' ? m.message.templateButtonReplyMessage.selectedId :
-                m.mtype === 'messageContextInfo' ?
-                m.message.buttonsResponseMessage ? m.selectedButtonId ||
-                m.message.listResponseMessage ? m.singleSelect.selectedRowId ||
-                m.message.InteractiveResponseMessage.NativeFlowResponseMessage ||
-                m.text :
-                ''
-            );
-
+    m.mtype === 'conversation' ? m.message.conversation :
+  m.mtype === 'imageMessage' ? m.message.imageMessage.caption :
+  m.mtype === 'videoMessage' ? m.message.videoMessage.caption :
+  m.mtype === 'extendedTextMessage' ? m.message.extendedTextMessage.text :
+  m.mtype === 'buttonsResponseMessage' ? m.message.buttonsResponseMessage.selectedButtonId :
+  m.mtype === 'listResponseMessage' ? m.message.listResponseMessage.singleSelectReply.selectedRowId :
+  m.mtype === 'InteractiveResponseMessage' ? JSON.parse(m.message.interactiveResponseMessage.nativeFlowResponseMessage.paramsJson)?.id :
+  m.mtype === 'templateButtonReplyMessage' ? m.message.templateButtonReplyMessage.selectedId :
+  m.mtype === 'messageContextInfo' ?
+    m.message.buttonsResponseMessage?.selectedButtonId ||
+    m.message.listResponseMessage?.singleSelectReply.selectedRowId ||
+    m.message.InteractiveResponseMessage.NativeFlowResponseMessage ||
+    m.text :
+  ''
+);
             var budy = (typeof m.text === 'string' ? m.text : '');
             const prefix = global.prefa || ".";
             const isCmdWithPrefix = body.startsWith(prefix);

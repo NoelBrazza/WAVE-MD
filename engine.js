@@ -50,7 +50,7 @@ const reverseIpLookup = require('./src/pentest/reverseIPLookup')
 global.modnumber = '254745247106'
     //src/database
 let ntilinkall = JSON.parse(fs.readFileSync('./src/database/antilink.json'));
-// let autoblck =JSON.parse(fs.readFileSync('./src/database/autoblock.json'));
+let autoblck =JSON.parse(fs.readFileSync('./src/database/autoblock.json'));
 let _afk = JSON.parse(fs.readFileSync('./src/database/afk-user.json'))
 let hit = JSON.parse(fs.readFileSync('./src/database/total-hit-user.json'))
 
@@ -154,7 +154,7 @@ module.exports = Wave = async(Wave, m, msg, chatUpdate, store) => {
             const isGroupOwner = m.isGroup ? (groupOwner ? groupOwner : groupAdmins).includes(m.sender) : false
             const isCreator = [botNumber, ...global.ownernumber].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
             const AntiLinkAll = m.isGroup ? ntilinkall.includes(from) : false;
-            //   const AutoBlock = m.isGroup ? autoblck.includes(from) : true;
+            const AutoBlock = m.isGroup ? autoblck.includes(from) : true;
             const pickRandom = (arr) => {
                 return arr[Math.floor(Math.random() * arr.length)]
             }
